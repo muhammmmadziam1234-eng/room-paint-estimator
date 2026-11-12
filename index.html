@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Room Paint Estimator | Second Coat</title><meta name="description" content="Plan a fictional room painting project with a clear, itemized estimate."><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header><a class="brand" href="./" aria-label="Second Coat home"><span class="brand-mark" aria-hidden="true">◩</span> Second Coat</a><span class="demo">Sample studio</span></header>
+<main><section class="hero" aria-labelledby="main-title"><div><h1 id="main-title">Plan your next coat.</h1><p>Enter a room’s dimensions and see an itemized painting estimate you can save.</p><a class="jump" href="#estimate">Start an estimate ↓</a></div>
+<svg class="drawing" viewBox="0 0 430 215" aria-hidden="true">
+<path d="M35 162 172 111 391 151 255 204Z" fill="#ffdd8b" stroke="#191b18" stroke-width="2"/>
+<path d="M35 162V47L172 15V111Z" fill="#f1926b" stroke="#191b18" stroke-width="2"/>
+<path d="M172 15 391 43V151L172 111Z" fill="#f6bc47" stroke="#191b18" stroke-width="2"/>
+<path d="M216 42 319 55V116L216 98Z" fill="#f8ebca" stroke="#191b18" stroke-width="2"/>
+<path d="M268 49V108M216 70l103 15M54 139l99-37M193 103l178 33M90 177l135-49M152 188l140-52M214 198l142-52M410 48v98m-6-98h12m-12 98h12M30 24l117-15m-117 9v12m117-27v12" fill="none" stroke="#191b18" stroke-width="1.5"/>
+<circle cx="58" cy="73" r="8" fill="#f8ebca"/><path d="M58 65v16m-8-8h16" stroke="#191b18"/>
+</svg></section>
+<section class="workbench" id="estimate" aria-label="Paint estimate">
+<form id="quote"><h2>Room details</h2><p>Measure wall to wall, then choose your finish.</p>
+<div class="measure"><label>Length (m)<input name="length" type="number" min="2" max="15" step="0.1" value="4.5" required></label><label>Width (m)<input name="width" type="number" min="2" max="15" step="0.1" value="3.5" required></label><label>Height (m)<input name="height" type="number" min="2" max="5" step="0.1" value="2.5" required></label></div>
+<fieldset><legend>Paint finish</legend><div class="choices"><label><input type="radio" name="finish" value="matte" checked><span>Matte<small>Soft, low sheen</small></span></label><label><input type="radio" name="finish" value="eggshell"><span>Eggshell<small>Light sheen</small></span></label><label><input type="radio" name="finish" value="satin"><span>Satin<small>Smooth sheen</small></span></label></div></fieldset>
+<div class="options"><label><input type="checkbox" name="ceiling"> Include ceiling</label><label><input type="checkbox" name="repair"> Add minor wall repairs</label></div>
+<p id="error" class="error" role="alert"></p><button type="submit" class="action">Update estimate</button></form>
+<aside class="receipt" aria-labelledby="receipt-title"><h2 id="receipt-title">Your estimate</h2><p id="area"></p><dl id="breakdown"></dl><div class="total"><span>Estimated total</span><strong id="total" aria-live="polite"></strong></div><div class="receipt-actions"><button id="download" type="button">Download estimate</button><a id="share" hidden>Open shareable estimate</a></div><p id="share-note" role="status"></p><p class="terms">Demo prices in USD. This estimate does not deduct doors or windows and is not a booking.</p></aside>
+</section>
+</main><footer>Second Coat is a fictional studio. No personal details are collected.</footer><script type="module" src="./app.mjs"></script></body></html>
