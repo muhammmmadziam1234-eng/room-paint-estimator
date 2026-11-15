@@ -1,0 +1,17 @@
+{
+  "paper": "A4",
+  "method": "Chromium page.pdf with print CSS; pages counted as /Type /Page objects in the PDF",
+  "date": "2026-11-15",
+  "typicalQuote": {
+    "rooms": 3,
+    "description": "the 3-room quote shown in docs/quote-print.png",
+    "pages": 1,
+    "screenHeightPx": 1123,
+    "pageHeightPx": 1123
+  },
+  "largestQuote": {
+    "rooms": 10,
+    "description": "10 rooms, each with ceiling, repairs, 2 doors and 3 windows",
+    "pages": 3
+  }
+}
