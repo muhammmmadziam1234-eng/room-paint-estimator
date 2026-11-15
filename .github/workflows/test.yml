@@ -5,7 +5,8 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  unit:
+    # Unit and server tests on both supported Node versions, then the coverage gate.
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,4 +16,39 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --ignore-scripts
       - run: npm test
+      # Fails when line coverage of quote.mjs or state.mjs drops below 90 %.
+      - run: npm run coverage
+  e2e:
+    # Real-browser tests (quote maths in the page, storage, links, print and PDF, offline, 360 px) and the axe checks.
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+      CHROME_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:e2e
+  lighthouse:
+    # Lighthouse, mobile preset, median of 3 runs against `node serve.mjs`.
+    # Local medians are 99 / 100 / 100 / 100 (docs/evidence/lighthouse.json). The performance gate here is 90, a little below
+    # that, because shared runners are slower and noisier than a workstation; the other three categories do not vary from run
+    # to run, so they keep their targets.
+    runs-on: ubuntu-latest
+    env:
+      CHROME_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node scripts/lighthouse.mjs --out=lighthouse-ci.json --min=performance:90,accessibility:100,best-practices:95,seo:95
+      - run: cat lighthouse-ci.json
