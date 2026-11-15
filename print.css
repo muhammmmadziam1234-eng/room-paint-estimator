@@ -1,0 +1,27 @@
+/* Loaded with media="print": the printed or saved-as-PDF quote is the #print-sheet block alone. */
+@page{margin:14mm}
+html,body{background:#fff}
+body{color:#000;font:9.5pt/1.35 system-ui,sans-serif}
+.skip,body>header,.hero,.workbench,.saved,.total-bar,body>footer{display:none!important}
+main{max-width:none;margin:0;padding:0}
+#print-sheet{display:block}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10mm;padding-bottom:3mm;border-bottom:1.5pt solid #000}
+.sheet-studio{font:700 18pt/1.1 Display,Georgia,serif}
+.sheet-note{margin-top:1mm;color:#333}
+.sheet-meta{display:grid;grid-template-columns:auto auto;gap:.6mm 5mm}
+.sheet-meta dt{color:#333}
+.sheet-meta dd{font-weight:700;text-align:right}
+#sheet-title{margin:4mm 0 1mm;font:700 20pt/1.1 Display,Georgia,serif}
+.sheet-name{font-size:11pt;font-weight:700}
+.sheet-table{width:100%;margin-top:3mm;border-collapse:collapse;break-inside:avoid}
+.sheet-table caption{padding-bottom:1mm;text-align:left}
+.sheet-table caption strong{font-size:11pt}
+.sheet-table th,.sheet-table td{padding:.9mm 1.4mm;border-bottom:.5pt solid #666;font-weight:400;text-align:left;vertical-align:top}
+.sheet-table thead th{border-bottom:1pt solid #000;font-weight:700}
+.sheet-table td:last-child,.sheet-table thead th:last-child{text-align:right;white-space:nowrap}
+.sheet-table .subtotal th,.sheet-table .subtotal td{font-weight:700}
+.sheet-table .grand th,.sheet-table .grand td{border-top:1.5pt solid #000;border-bottom:1.5pt solid #000;font-size:12pt;font-weight:700}
+.sheet-terms{margin-top:4mm;break-inside:avoid}
+.sheet-terms h2{font:700 10.5pt/1.2 system-ui,sans-serif;letter-spacing:0}
+.sheet-terms ul{margin-top:1mm;padding-left:4.5mm;list-style:disc}
+.sheet-demo{margin-top:3mm;padding:2mm 3mm;border:1pt solid #000;font-weight:700;break-inside:avoid}

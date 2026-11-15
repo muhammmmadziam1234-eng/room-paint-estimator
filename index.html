@@ -1,8 +1,28 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Room Paint Estimator | Second Coat</title><meta name="description" content="Plan a fictional room painting project with a clear, itemized estimate."><link rel="stylesheet" href="./style.css"></head>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Room Paint Estimator | Second Coat</title>
+<meta name="description" content="Build a multi-room painting quote for a fictional studio: exact prices, door and window deductions, a shareable link, a printable one-page quote, and it works offline.">
+<meta name="theme-color" content="#f6bf48">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./print.css" media="print">
+<link rel="modulepreload" href="./app.mjs">
+<link rel="modulepreload" href="./quote.mjs">
+<link rel="modulepreload" href="./units.mjs">
+<link rel="modulepreload" href="./state.mjs">
+<link rel="modulepreload" href="./format.mjs">
+<link rel="modulepreload" href="./store.mjs">
+</head>
 <body>
+<a class="skip" href="#quote-title">Skip to the quote</a>
 <header><a class="brand" href="./" aria-label="Second Coat home"><span class="brand-mark" aria-hidden="true">◩</span> Second Coat</a><span class="demo">Sample studio</span></header>
-<main><section class="hero" aria-labelledby="main-title"><div><h1 id="main-title">Plan your next coat.</h1><p>Enter a room’s dimensions and see an itemized painting estimate you can save.</p><a class="jump" href="#estimate">Start an estimate ↓</a></div>
-<svg class="drawing" viewBox="0 0 430 215" aria-hidden="true">
+<main>
+<section class="hero" aria-labelledby="main-title"><div><h1 id="main-title">Plan your next coat.</h1><p>Add each room to see an itemised painting quote you can save, share and print.</p><a class="jump" href="#quote-title">Start a quote ↓</a></div>
+<svg class="drawing" viewBox="0 0 430 215" aria-hidden="true" focusable="false">
 <path d="M35 162 172 111 391 151 255 204Z" fill="#ffdd8b" stroke="#191b18" stroke-width="2"/>
 <path d="M35 162V47L172 15V111Z" fill="#f1926b" stroke="#191b18" stroke-width="2"/>
 <path d="M172 15 391 43V151L172 111Z" fill="#f6bc47" stroke="#191b18" stroke-width="2"/>
@@ -10,12 +30,92 @@
 <path d="M268 49V108M216 70l103 15M54 139l99-37M193 103l178 33M90 177l135-49M152 188l140-52M214 198l142-52M410 48v98m-6-98h12m-12 98h12M30 24l117-15m-117 9v12m117-27v12" fill="none" stroke="#191b18" stroke-width="1.5"/>
 <circle cx="58" cy="73" r="8" fill="#f8ebca"/><path d="M58 65v16m-8-8h16" stroke="#191b18"/>
 </svg></section>
-<section class="workbench" id="estimate" aria-label="Paint estimate">
-<form id="quote"><h2>Room details</h2><p>Measure wall to wall, then choose your finish.</p>
-<div class="measure"><label>Length (m)<input name="length" type="number" min="2" max="15" step="0.1" value="4.5" required></label><label>Width (m)<input name="width" type="number" min="2" max="15" step="0.1" value="3.5" required></label><label>Height (m)<input name="height" type="number" min="2" max="5" step="0.1" value="2.5" required></label></div>
-<fieldset><legend>Paint finish</legend><div class="choices"><label><input type="radio" name="finish" value="matte" checked><span>Matte<small>Soft, low sheen</small></span></label><label><input type="radio" name="finish" value="eggshell"><span>Eggshell<small>Light sheen</small></span></label><label><input type="radio" name="finish" value="satin"><span>Satin<small>Smooth sheen</small></span></label></div></fieldset>
-<div class="options"><label><input type="checkbox" name="ceiling"> Include ceiling</label><label><input type="checkbox" name="repair"> Add minor wall repairs</label></div>
-<p id="error" class="error" role="alert"></p><button type="submit" class="action">Update estimate</button></form>
-<aside class="receipt" aria-labelledby="receipt-title"><h2 id="receipt-title">Your estimate</h2><p id="area"></p><dl id="breakdown"></dl><div class="total"><span>Estimated total</span><strong id="total" aria-live="polite"></strong></div><div class="receipt-actions"><button id="download" type="button">Download estimate</button><a id="share" hidden>Open shareable estimate</a></div><p id="share-note" role="status"></p><p class="terms">Demo prices in USD. This estimate does not deduct doors or windows and is not a booking.</p></aside>
+
+<div class="workbench">
+<section class="builder" aria-labelledby="quote-title">
+<h2 id="quote-title" tabindex="-1">Your quote</h2>
+<p class="lede">Measure each room wall to wall. Doors and windows come off the wall area, and one setup fee covers the whole job.</p>
+<form id="quote-form" data-unit="m" novalidate>
+<div class="settings">
+<label class="field wide"><span>Quote name <span class="optional">(optional)</span></span><input id="quote-name" type="text" maxlength="40" autocomplete="off" placeholder="For example: Flat 4B repaint"></label>
+<fieldset class="units"><legend>Units</legend>
+<div class="segmented"><label><input type="radio" name="unit" value="m" checked><span>Metric (m)</span></label><label><input type="radio" name="unit" value="ft"><span>Imperial (ft, in)</span></label></div></fieldset>
+<label class="field">Currency and number format<select id="market"></select></label>
+<label class="field"><span>Tax rate, % <span class="optional">(optional, 0 to 25)</span></span><input id="tax" type="text" inputmode="decimal" autocomplete="off" placeholder="0" aria-describedby="tax-error"></label>
+<p id="tax-error" class="field-error" hidden></p>
+</div>
+<ol id="rooms" class="rooms" aria-label="Rooms"></ol>
+<div class="add-row"><button type="button" id="add-room" class="btn primary">Add room</button><p id="room-limit" class="hint"></p></div>
+</form>
 </section>
-</main><footer>Second Coat is a fictional studio. No personal details are collected.</footer><script type="module" src="./app.mjs"></script></body></html>
+
+<aside class="summary" aria-labelledby="summary-title">
+<h2 id="summary-title">Estimate</h2>
+<p id="summary-note" class="note" role="status"></p>
+<ul id="room-totals" class="lines" aria-label="Room subtotals"></ul>
+<dl id="job-totals" class="lines"></dl>
+<div class="total" aria-live="polite" aria-atomic="true"><span>Estimated total</span><strong id="total">—</strong></div>
+<div class="actions">
+<button type="button" class="btn primary" id="save">Save quote</button>
+<button type="button" class="btn" id="copy-link">Copy link</button>
+<button type="button" class="btn" id="print">Print / Save as PDF</button>
+<button type="button" class="btn quiet" id="new-quote">New quote</button>
+</div>
+<label class="field share">Shareable link<input id="share-link" type="text" readonly></label>
+<p id="status" class="status" role="status"></p>
+<p class="terms">Fictional demo prices. Not a booking or an offer. Everything stays in this browser.</p>
+</aside>
+</div>
+
+<section class="saved" aria-labelledby="saved-title">
+<h2 id="saved-title" tabindex="-1">Saved quotes</h2>
+<p id="saved-empty" class="hint">No saved quotes yet. Saved quotes stay in this browser and are never sent anywhere.</p>
+<ul id="saved-list" class="saved-list" aria-label="Saved quotes"></ul>
+<p id="saved-note" class="hint"></p>
+</section>
+
+<section id="print-sheet" class="sheet" aria-labelledby="sheet-title"></section>
+</main>
+<div class="total-bar" aria-hidden="true"><span>Estimated total</span><strong id="total-bar-value">—</strong></div>
+<footer>Second Coat is a fictional studio. No personal details are collected. Quotes are kept in this page's address and in your browser's local storage only.</footer>
+
+<template id="room-template">
+<li class="room"><article aria-labelledby="room-title">
+<header class="room-head"><h3 class="room-title" id="room-title" data-title tabindex="-1">Room</h3>
+<div class="room-actions"><button type="button" class="btn small" data-action="duplicate">Duplicate</button><button type="button" class="btn small" data-action="remove">Remove</button></div></header>
+<label class="field">Room name<input type="text" maxlength="40" autocomplete="off" data-field="name"></label>
+<p class="field-error" data-error="name" hidden></p>
+<div class="dims">
+<div class="dim" data-dim="length">
+<label class="dim-m">Length (m)<input type="text" inputmode="decimal" autocomplete="off" data-field="length-m"></label>
+<fieldset class="dim-ft"><legend>Length</legend><div class="pair"><label>ft<input type="text" inputmode="decimal" autocomplete="off" data-field="length-ft"></label><label>in<input type="text" inputmode="decimal" autocomplete="off" data-field="length-in"></label></div></fieldset>
+<p class="field-error" data-error="length" hidden></p></div>
+<div class="dim" data-dim="width">
+<label class="dim-m">Width (m)<input type="text" inputmode="decimal" autocomplete="off" data-field="width-m"></label>
+<fieldset class="dim-ft"><legend>Width</legend><div class="pair"><label>ft<input type="text" inputmode="decimal" autocomplete="off" data-field="width-ft"></label><label>in<input type="text" inputmode="decimal" autocomplete="off" data-field="width-in"></label></div></fieldset>
+<p class="field-error" data-error="width" hidden></p></div>
+<div class="dim" data-dim="height">
+<label class="dim-m">Height (m)<input type="text" inputmode="decimal" autocomplete="off" data-field="height-m"></label>
+<fieldset class="dim-ft"><legend>Height</legend><div class="pair"><label>ft<input type="text" inputmode="decimal" autocomplete="off" data-field="height-ft"></label><label>in<input type="text" inputmode="decimal" autocomplete="off" data-field="height-in"></label></div></fieldset>
+<p class="field-error" data-error="height" hidden></p></div>
+</div>
+<fieldset class="finish"><legend>Paint finish</legend><div class="choices">
+<label><input type="radio" value="matte" data-field="finish"><span>Matte<small>Soft, low sheen</small></span></label>
+<label><input type="radio" value="eggshell" data-field="finish"><span>Eggshell<small>Light sheen</small></span></label>
+<label><input type="radio" value="satin" data-field="finish"><span>Satin<small>Smooth sheen</small></span></label></div></fieldset>
+<div class="options"><label><input type="checkbox" data-field="ceiling"> Paint the ceiling</label><label><input type="checkbox" data-field="repair"> Add minor wall repairs</label></div>
+<fieldset class="openings"><legend>Doors and windows</legend>
+<div class="counts"><label>Doors<input type="number" min="0" max="10" step="1" inputmode="numeric" data-field="doors"></label><label>Windows<input type="number" min="0" max="10" step="1" inputmode="numeric" data-field="windows"></label></div>
+<p class="hint">Each door takes 1.89 m² off the walls and each window 1.44 m².</p>
+<p class="field-error" data-error="doors" hidden></p><p class="field-error" data-error="windows" hidden></p></fieldset>
+<p class="room-result" data-result></p>
+</article></li>
+</template>
+
+<template id="saved-template">
+<li class="saved-item"><div><p class="saved-name" data-name></p><p class="hint" data-meta></p></div>
+<div class="saved-actions"><button type="button" class="btn small" data-action="load">Load</button><button type="button" class="btn small" data-action="delete">Delete</button></div></li>
+</template>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>

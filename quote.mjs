@@ -96,8 +96,8 @@ export function priceQuote(quote){
     const openingsMm2=room.doors*OPENINGS.doorMm2+room.windows*OPENINGS.windowMm2;
     const netWallMm2=Math.max(0,grossWallMm2-openingsMm2);
     const ceilingMm2=room.ceiling?length*width:0;
-    const lines=[{key:'walls',label:'Wall paint and labour',mm2:netWallMm2,cents:roundDiv(netWallMm2*card[room.finish],MM2_PER_M2),paint:true}];
-    if(room.ceiling)lines.push({key:'ceiling',label:'Ceiling paint and labour',mm2:ceilingMm2,cents:roundDiv(ceilingMm2*card.ceiling,MM2_PER_M2),paint:true});
+    const lines=[{key:'walls',label:'Wall paint and labour',mm2:netWallMm2,rate:card[room.finish],cents:roundDiv(netWallMm2*card[room.finish],MM2_PER_M2),paint:true}];
+    if(room.ceiling)lines.push({key:'ceiling',label:'Ceiling paint and labour',mm2:ceilingMm2,rate:card.ceiling,cents:roundDiv(ceilingMm2*card.ceiling,MM2_PER_M2),paint:true});
     if(room.repair)lines.push({key:'repairs',label:'Minor wall repairs',cents:card.repairs,paint:false});
     return {
       index,finish:room.finish,grossWallMm2,openingsMm2,deductedMm2:Math.min(grossWallMm2,openingsMm2),netWallMm2,ceilingMm2,lines,
