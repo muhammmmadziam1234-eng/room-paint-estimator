@@ -1,0 +1,64 @@
+{
+  "tool": "axe-core",
+  "version": "4.14.0",
+  "date": "2026-11-15",
+  "rulesetTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa",
+    "best-practice"
+  ],
+  "browser": "153.0.8010.12",
+  "scenarios": [
+    {
+      "scenario": "default quote, desktop",
+      "violations": 0,
+      "rulesPassed": 47,
+      "needsReview": [
+        "color-contrast"
+      ]
+    },
+    {
+      "scenario": "default quote, 360 px wide",
+      "violations": 0,
+      "rulesPassed": 47,
+      "needsReview": [
+        "color-contrast"
+      ]
+    },
+    {
+      "scenario": "3-room quote with 4 errors shown",
+      "violations": 0,
+      "rulesPassed": 46,
+      "needsReview": [
+        "color-contrast"
+      ]
+    },
+    {
+      "scenario": "the same quote in feet and inches",
+      "violations": 0,
+      "rulesPassed": 46,
+      "needsReview": [
+        "color-contrast"
+      ]
+    },
+    {
+      "scenario": "saved-quotes panel with two saved quotes",
+      "violations": 0,
+      "rulesPassed": 47,
+      "needsReview": [
+        "color-contrast"
+      ]
+    },
+    {
+      "scenario": "print media emulation, 3-room quote",
+      "violations": 0,
+      "rulesPassed": 33,
+      "needsReview": [
+        "color-contrast"
+      ]
+    }
+  ]
+}

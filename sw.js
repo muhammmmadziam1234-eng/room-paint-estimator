@@ -3,7 +3,7 @@
 // from a sub-path such as /room-paint-estimator/ on GitHub Pages.
 // VERSION is a hash of the precached files. `npm run stamp` writes it and a test checks it, so a changed
 // file always gets a new cache, and the old cache is deleted when the new worker activates.
-const VERSION='c4e7245bf0';
+const VERSION='d5cefd0c3c';
 const PREFIX='second-coat-';
 const CACHE=PREFIX+VERSION;
 const SHELL=['./','index.html','style.css','print.css','app.mjs','quote.mjs','units.mjs','state.mjs','format.mjs','store.mjs','pwa.mjs',
