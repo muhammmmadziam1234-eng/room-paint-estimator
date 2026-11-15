@@ -19,10 +19,11 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm test
+      # The rules and evidence tables in the README are generated; this fails when they are out of date.
+      # It runs before the coverage step, which rewrites docs/evidence/coverage.txt for the Node version in use.
+      - run: npm run check:readme
       # Fails when line coverage of quote.mjs or state.mjs drops below 90 %.
       - run: npm run coverage
-      # The rules and evidence tables in the README are generated; this fails when they are out of date.
-      - run: npm run check:readme
   e2e:
     # Real-browser tests (quote maths in the page, storage, links, print and PDF, offline, 360 px) and the axe checks.
     runs-on: ubuntu-latest

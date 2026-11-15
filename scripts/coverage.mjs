@@ -7,7 +7,8 @@ import {fileURLToPath} from 'node:url';
 const root=new URL('../',import.meta.url);
 const MODULES=['quote.mjs','state.mjs','units.mjs','format.mjs','store.mjs'];
 const GATED=['quote.mjs','state.mjs'], MINIMUM=90;
-const args=['--test','--experimental-test-coverage',...MODULES.map(file=>`--test-coverage-include=${file}`),'test/*.test.mjs'];
+// TAP is asked for explicitly: the default reporter differs between Node versions and this script reads the report.
+const args=['--test','--test-reporter=tap','--experimental-test-coverage',...MODULES.map(file=>`--test-coverage-include=${file}`),'test/*.test.mjs'];
 const run=spawnSync(process.execPath,args,{cwd:fileURLToPath(root),encoding:'utf8',maxBuffer:64*1024*1024});
 const report=(run.stdout.match(/# start of coverage report[\s\S]*?# end of coverage report/)?.[0]??'').split('\n').map(line=>line.replace(/^# ?/,'')).join('\n');
 const lines=Object.fromEntries(MODULES.map(file=>{

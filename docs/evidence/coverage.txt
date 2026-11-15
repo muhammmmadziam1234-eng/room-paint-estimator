@@ -1,5 +1,5 @@
 Unit and server test coverage, recorded 2026-11-15 with Node v22.23.4.
-Command: node --test --experimental-test-coverage --test-coverage-include=quote.mjs --test-coverage-include=state.mjs --test-coverage-include=units.mjs --test-coverage-include=format.mjs --test-coverage-include=store.mjs "test/*.test.mjs"
+Command: node --test --test-reporter=tap --experimental-test-coverage --test-coverage-include=quote.mjs --test-coverage-include=state.mjs --test-coverage-include=units.mjs --test-coverage-include=format.mjs --test-coverage-include=store.mjs "test/*.test.mjs"
 Gate: line coverage of quote.mjs and state.mjs must be at least 90 %. The other modules are reported, not gated.
 
 start of coverage report

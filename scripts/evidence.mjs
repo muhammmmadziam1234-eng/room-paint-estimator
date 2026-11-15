@@ -14,8 +14,8 @@ const run=(name,args,env={})=>{
 const count=(output,label)=>Number(new RegExp(`^# ${label} (\\d+)`,'m').exec(output)?.[1]);
 const summary=output=>({tests:count(output,'tests'),pass:count(output,'pass'),fail:count(output,'fail')});
 
-const unit=summary(run('unit and server tests',['--test','test/*.test.mjs']));
-const e2e=summary(run('browser tests',['--test','--test-concurrency=1','--test-timeout=120000','test/e2e/*.test.mjs'],{WRITE_EVIDENCE:'1'})); // also writes axe.json
+const unit=summary(run('unit and server tests',['--test','--test-reporter=tap','test/*.test.mjs']));
+const e2e=summary(run('browser tests',['--test','--test-reporter=tap','--test-concurrency=1','--test-timeout=120000','test/e2e/*.test.mjs'],{WRITE_EVIDENCE:'1'})); // also writes axe.json
 writeFileSync(new URL('docs/evidence/tests.json',root),JSON.stringify({date:new Date().toISOString().slice(0,10),node:process.version,unit,e2e},null,2)+'\n');
 run('coverage',['scripts/coverage.mjs']);
 console.log(run('lighthouse',['scripts/lighthouse.mjs']).trim().split('\n').at(-1));
