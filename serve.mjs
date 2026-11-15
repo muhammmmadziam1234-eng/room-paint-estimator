@@ -17,7 +17,14 @@ const assets=new Map([
   ['/store.mjs',['store.mjs',js,NO_CACHE]],
   ['/estimate.mjs',['estimate.mjs',js,NO_CACHE]],
   ['/fonts/gelasio-bold.woff2',['fonts/gelasio-bold.woff2','font/woff2',KEEP]],
-  ['/icons/icon.svg',['icons/icon.svg','image/svg+xml',KEEP]]
+  ['/pwa.mjs',['pwa.mjs',js,NO_CACHE]],
+  ['/sw.js',['sw.js',js,NO_CACHE]],
+  ['/manifest.webmanifest',['manifest.webmanifest','application/manifest+json',NO_CACHE]],
+  ['/icons/icon.svg',['icons/icon.svg','image/svg+xml',KEEP]],
+  ['/icons/icon-180.png',['icons/icon-180.png','image/png',KEEP]],
+  ['/icons/icon-192.png',['icons/icon-192.png','image/png',KEEP]],
+  ['/icons/icon-512.png',['icons/icon-512.png','image/png',KEEP]],
+  ['/icons/icon-maskable-512.png',['icons/icon-maskable-512.png','image/png',KEEP]]
 ]);
 createServer(async(req,res)=>{
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405,{Allow:'GET, HEAD'}).end();return;}

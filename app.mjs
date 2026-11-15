@@ -5,6 +5,7 @@ import {parseDecimal,metresToMm,feetInchesToMm,mmToMetresText,mmToFeetInchesText
 import {defaultRoom,defaultState,normalizeName,validateState,encodeState,restoreState,quoteNumber,hashFor,codeFromHash} from './state.mjs';
 import {moneyFormatter,describeQuote,issueMessage,areaText,formatDate,addDays} from './format.mjs';
 import {createStore,MAX_SAVED} from './store.mjs';
+import {registerOffline} from './pwa.mjs';
 
 const $=id=>document.getElementById(id);
 const form=$('quote-form'), roomsList=$('rooms'), savedList=$('saved-list');
@@ -393,3 +394,4 @@ function start(){
   if(message)setStatus(message,warn);
 }
 start();
+registerOffline();

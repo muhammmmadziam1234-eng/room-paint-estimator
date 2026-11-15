@@ -28,7 +28,8 @@ test('serves the page, its scripts, styles, font and icon',async t=>{
   const port=await start(t), root='http://127.0.0.1:'+port;
   for(const [path,type] of [['/','text/html'],['/index.html','text/html'],['/style.css','text/css'],['/print.css','text/css'],['/app.mjs','text/javascript'],
     ['/quote.mjs','text/javascript'],['/units.mjs','text/javascript'],['/state.mjs','text/javascript'],['/format.mjs','text/javascript'],['/store.mjs','text/javascript'],
-    ['/estimate.mjs','text/javascript'],['/fonts/gelasio-bold.woff2','font/woff2'],['/icons/icon.svg','image/svg+xml']]){
+    ['/estimate.mjs','text/javascript'],['/pwa.mjs','text/javascript'],['/sw.js','text/javascript'],['/manifest.webmanifest','application/manifest+json'],
+    ['/fonts/gelasio-bold.woff2','font/woff2'],['/icons/icon.svg','image/svg+xml'],['/icons/icon-180.png','image/png'],['/icons/icon-192.png','image/png'],['/icons/icon-512.png','image/png'],['/icons/icon-maskable-512.png','image/png']]){
     const response=await fetch(root+path);
     assert.equal(response.status,200,path);
     assert.ok(response.headers.get('content-type').startsWith(type),path+' is '+response.headers.get('content-type'));
