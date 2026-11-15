@@ -1,5 +1,7 @@
 # Room Paint Estimator
 
+[![Tests](https://github.com/muhammmmadziam1234-eng/room-paint-estimator/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/muhammmmadziam1234-eng/room-paint-estimator/actions/workflows/test.yml)
+
 Second Coat is a responsive website for a fictional painting studio. Visitors enter room dimensions, choose a finish and optional work, then get an itemized estimate they can download or reopen from a shareable link.
 
 ![Room Paint Estimator screenshot](docs/preview.png)
