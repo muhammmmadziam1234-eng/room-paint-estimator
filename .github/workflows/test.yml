@@ -21,6 +21,8 @@ jobs:
       - run: npm test
       # Fails when line coverage of quote.mjs or state.mjs drops below 90 %.
       - run: npm run coverage
+      # The rules and evidence tables in the README are generated; this fails when they are out of date.
+      - run: npm run check:readme
   e2e:
     # Real-browser tests (quote maths in the page, storage, links, print and PDF, offline, 360 px) and the axe checks.
     runs-on: ubuntu-latest

@@ -22,11 +22,11 @@
     "seo": 100
   },
   "medianMetrics": {
-    "firstContentfulPaintMs": 758,
-    "largestContentfulPaintMs": 758,
-    "totalBlockingTimeMs": 39,
+    "firstContentfulPaintMs": 765,
+    "largestContentfulPaintMs": 765,
+    "totalBlockingTimeMs": 13,
     "cumulativeLayoutShift": 0.064,
-    "speedIndexMs": 762
+    "speedIndexMs": 765
   },
   "minimums": {
     "performance": 95,
@@ -38,35 +38,17 @@
   "perRun": [
     {
       "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "metrics": {
-        "firstContentfulPaintMs": 758,
-        "largestContentfulPaintMs": 758,
-        "totalBlockingTimeMs": 39,
-        "cumulativeLayoutShift": 0.041,
-        "speedIndexMs": 781
-      },
-      "notFullMarks": [
-        "performance: cumulative-layout-shift (0.99)"
-      ]
-    },
-    {
-      "scores": {
         "performance": 99,
         "accessibility": 100,
         "best-practices": 100,
         "seo": 100
       },
       "metrics": {
-        "firstContentfulPaintMs": 756,
-        "largestContentfulPaintMs": 756,
-        "totalBlockingTimeMs": 53,
+        "firstContentfulPaintMs": 765,
+        "largestContentfulPaintMs": 765,
+        "totalBlockingTimeMs": 13,
         "cumulativeLayoutShift": 0.064,
-        "speedIndexMs": 756
+        "speedIndexMs": 765
       },
       "notFullMarks": [
         "performance: cumulative-layout-shift (0.97)"
@@ -80,11 +62,29 @@
         "seo": 100
       },
       "metrics": {
-        "firstContentfulPaintMs": 762,
-        "largestContentfulPaintMs": 762,
-        "totalBlockingTimeMs": 24,
+        "firstContentfulPaintMs": 770,
+        "largestContentfulPaintMs": 770,
+        "totalBlockingTimeMs": 39,
         "cumulativeLayoutShift": 0.064,
-        "speedIndexMs": 762
+        "speedIndexMs": 770
+      },
+      "notFullMarks": [
+        "performance: cumulative-layout-shift (0.97)"
+      ]
+    },
+    {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "firstContentfulPaintMs": 757,
+        "largestContentfulPaintMs": 757,
+        "totalBlockingTimeMs": 9,
+        "cumulativeLayoutShift": 0.064,
+        "speedIndexMs": 757
       },
       "notFullMarks": [
         "performance: cumulative-layout-shift (0.97)"
