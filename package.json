@@ -1,1 +1,1 @@
-{"name":"room-paint-estimator","private":true,"type":"module","scripts":{"start":"node serve.mjs","test":"node --test"},"engines":{"node":">=22"}}
+{"name":"room-paint-estimator","private":true,"type":"module","scripts":{"start":"node serve.mjs","test":"node --test \"test/*.test.mjs\""},"engines":{"node":">=22"},"devDependencies":{"axe-core":"4.14.0","lighthouse":"13.6.0","playwright-core":"1.63.0"}}
