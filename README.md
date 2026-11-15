@@ -17,4 +17,6 @@ Open http://127.0.0.1:4190. Change the finish, add ceiling painting, and update 
 
 The estimate uses the perimeter times wall height for wall area and the floor dimensions for ceiling area. Each line is rounded to cents before summing. Rates are fictional, and the estimator does not deduct doors or windows, create bookings, or collect personal information.
 
-The static app can be hosted on GitHub Pages from the repository root.
+The static app can be hosted on GitHub Pages from the repository root. Headings use Georgia where it is installed and the bundled Gelasio, an open typeface with Georgia's letter widths, everywhere else, so the page looks the same on every device.
+
+© 2026 muhammmmadziam1234-eng. All rights reserved, except the typeface in [fonts](fonts), which keeps its own licence.
